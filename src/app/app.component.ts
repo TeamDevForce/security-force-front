@@ -1,16 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { RegisterPageComponent } from "./pages/register-page/register-page.component";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
-  template: `
-    <h1>Welcome to {{title}}!</h1>
-
-    <router-outlet />
-  `,
-  styles: [],
+  imports: [RouterOutlet, RegisterPageComponent],
+  templateUrl: './app.component.html',
 })
 export class AppComponent {
   title = 'security-force-front';

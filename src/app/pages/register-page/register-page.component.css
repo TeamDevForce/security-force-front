@@ -1,0 +1,153 @@
+.title-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: "Poppins", sans-serif;
+    text-align: center;
+    color: white;
+    
+    h1 {
+        font-size: 28px;
+        font-weight: 600;
+        line-height: 42px;
+    
+        span {
+            color:red;
+        }
+    }
+    
+    p {
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 27px;
+
+        span {
+            color:red;
+            text-decoration: underline;
+        }
+    }
+}
+
+.form-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    font-family: 'Arial', sans-serif;
+    color: #999;
+
+    div {
+        height: 65px;
+        width: 700px;
+        padding: 0;
+        box-sizing: border-box;
+        text-align: start;
+
+        input {
+            color: #999;
+            padding: 20px;
+            font-size: large;
+            box-sizing: border-box;
+            width: 100%;
+            height: 100%;
+            border-radius: 5px;
+            background-color: #D9D9D933;
+            border: 0;
+        }
+    }
+
+    .age-gender-section {
+        gap: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .age-field {
+            padding: 0;
+            width: 40%;
+        }
+
+        .gender-field {
+            padding: 0;
+            width: 60%;
+            gap: 12px;
+            display: flex;
+            flex-direction: row;
+            box-sizing: border-box;
+            align-items: center;
+
+            p{
+                font-size: large;
+            }
+
+            div{
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                padding: 0;
+
+            }
+        }
+    }
+
+    .adress-section {
+        display: flex;
+        flex-direction: row;
+        gap: 14px;
+
+        div {
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+            width: 42%;
+            height: 100%;
+            gap: 4px;
+            justify-content: start;
+            align-items: center;
+
+            div {
+                display: flex;
+                flex-direction: column;
+                gap: 0;
+                height: 100%;
+                width: 100%;
+                padding: 0;
+            }
+        }
+
+        .cep {
+            display: flex;
+            flex-direction: column;
+            width: 34%;
+            gap: 0;
+        }
+    }
+
+    small {
+        color: red;
+        height: 0;
+        width: 100%;
+    }
+
+    select {
+        padding: 10px;
+        height: 100%;
+        width: 100%;
+        font-size: medium;
+        color: #999 ;
+        background-color: #D9D9D933;
+        border-radius: 5px;
+    }
+
+    .password-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+        gap: 16px;
+    }
+
+
+
+}

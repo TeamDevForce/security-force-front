@@ -1,0 +1,92 @@
+<app-layout-formulario (submit)="submit()">
+
+    <div class="title-section">
+        <h1>Bem-vindo ao <span>SecurityForce.</span>
+            <br>Faça seu cadastro, é fácil!</h1>
+        <p>Já possui uma conta? <span>Faça o login</span></p>
+    </div>
+
+    <form [formGroup]="registerForm" class="form-section">
+
+        <div>
+            <input type="text" placeholder="Nome*" formControlName="nome">
+            <small class="error" *ngIf="getFieldError('nome')">{{ getFieldError('nome') }}</small>
+        </div>
+        
+        <div class="age-gender-section">
+        
+            <div class="age-field">
+                <input type="number" placeholder="Idade*" formControlName="idade">
+                <small class="error" *ngIf="getFieldError('idade')">{{ getFieldError('idade') }}</small>
+            </div>
+        
+            <div class="gender-field">
+                <label for="sexo">Sexo*</label>
+                <div>
+                    <select formControlName="sexo" id="sexo">
+                        <option value="">Selecione</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Feminino">Feminino</option>
+                        <option value="Feminino">Outro</option>
+                    </select>
+                    <small class="error" *ngIf="getFieldError('sexo')">{{ getFieldError('sexo') }}</small>
+                </div>
+            </div>
+        
+        </div>
+        
+        <div>
+            <input type="email" placeholder="E-mail*" formControlName="email">
+            <small class="error" *ngIf="getFieldError('email')">{{ getFieldError('email') }}</small>
+        </div>
+
+        <div class="adress-section">
+
+            <div>
+                <label for="estado">Estado*</label>
+                <div>
+                    <select formControlName="estado" id="estado">
+                        <option value="">Selecione</option>
+                        <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
+                    </select>
+                    <small class="error" *ngIf="getFieldError('estado')">{{ getFieldError('estado') }}</small>
+                </div>
+            </div>
+        
+            <div>
+                <label for="cidade">Cidade*</label>
+                <div>
+                    <select formControlName="cidade" id="cidade">
+                        <option value="">Selecione</option>
+                        <option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</option>
+                    </select>
+                    <small class="error" *ngIf="getFieldError('cidade')">{{ getFieldError('cidade') }}</small>
+                </div>
+            </div>
+        
+            <div class="cep">
+                <input type="text" placeholder="CEP*" formControlName="cep" />
+                <small class="error" *ngIf="getFieldError('cep')">{{ getFieldError('cep') }}</small>
+            </div>
+        
+        </div>
+          
+        <div class="password-section">
+            <div>
+              <input type="password" placeholder="Senha*" formControlName="senha" />
+              <small class="error" *ngIf="getFieldError('senha')">{{ getFieldError('senha') }}</small>
+            </div>
+          
+            <div>
+              <input
+                type="password"
+                placeholder="Repita sua senha*"
+                formControlName="senhaRepetida"
+              />
+              <small class="error" *ngIf="getFieldError('senhaRepetida')">{{ getFieldError('senhaRepetida') }}</small>
+              <small class="error" *ngIf="registerForm.errors?.['senhaMismatchError']">As senhas não coincidem</small>
+            </div>
+        </div>
+          
+    </form>
+</app-layout-formulario>
