@@ -3,16 +3,16 @@
     <div class="container">
       <section class="side-options">
         <div class="logo-container">
-          <img src="/assets/logo1-security-force.svg" alt="">
+          <img src="/assets/svg/icons/logo1-security-force.svg" alt="">
         </div>
   
         <div class="btn-list">
           <button class="button-hover">
-            <img src="/assets/icon-login.svg" alt="">
+            <img src="/assets/svg/icons/icon-login.svg" alt="">
             Logins
           </button>
           <button class="button-hover font-weight">
-            <img src="/assets/icon-favoritos.svg" alt="">
+            <img src="/assets/svg/icons/icon-favoritos.svg" alt="">
             Favoritos
           </button>
         </div>
@@ -20,12 +20,36 @@
         <div class="add-category">
           <div class="input-add-category">
             <button class="category-list">
-              <img src="/assets/add-category-icon.svg" alt="">
+              <img src="/assets/svg/icons/add-category-icon.svg" alt="">
               <span>Categorias</span>
             </button>
             <button (click)="AddCategory()" class="add-category-btn">+</button>
           </div>
-        </div> 
+        </div>
+
+         <!-- LISTA DE CATEGORIAS -->
+        <ul
+        #categoriesList
+        [class.has-scroll]="hasScrolled"
+        [class.at-bottom]="isAtBottom"
+        cdkDropList
+        (cdkDropListDropped)="drop($event)"
+      >
+        <li
+          *ngFor="let category of categories; let i = index"
+          cdkDrag
+        >
+          <div class="color-circle" [style.backgroundColor]="category.color"></div>
+          {{ category.title }}
+
+          <ng-template cdkDragPreview>
+            <li class="template-preview">
+              <div class="color-circle-preview" [style.backgroundColor]="category.color"></div>
+              {{ category.title }}
+            </li>
+          </ng-template>
+        </li>
+      </ul>
 
           <!-- SELETOR DE CORES -->
         <div class="color-category" *ngIf="isActive">
@@ -45,7 +69,7 @@
 
         <div class="container-config">
           <span class="config">
-            <img src="/assets/config-icon.svg" alt="">
+            <img src="/assets/svg/icons/config-icon.svg" alt="">
             Configurações
           </span>
         </div>
@@ -53,13 +77,13 @@
       <section class="side-list">
         <div class="input-container">
           <label for="seach">
-            <img src="/assets/icon-seach.svg" alt="">
+            <img src="/assets/svg/icons/icon-seach.svg" alt="">
           </label>
           <input id="seach" type="text" placeholder="Buscar">
         </div>
         <div>
           <button class="add-button">
-            <img src="/assets/icon-add.svg" alt="">
+            <img src="/assets/svg/icons/icon-add.svg" alt="">
             Adicionar
           </button>
         </div>

@@ -18,3 +18,18 @@
 body {
     background-color: #1a1a1a;
 }
+
+.template-preview {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    color: #ffffff;
+    font: 300 18px 'Poppins';
+    user-select: none;
+  }
+  
+  .color-circle-preview {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
