@@ -8,7 +8,6 @@ import { LayoutPrincipalComponent } from './components/layout-principal/layout-p
   imports: [RouterOutlet, LayoutPrincipalComponent],
   template: `
     <router-outlet />
-    <app-layout-principal></app-layout-principal>
   `,
   styles: [],
 })

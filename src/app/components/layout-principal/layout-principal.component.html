@@ -16,16 +16,33 @@
             Favoritos
           </button>
         </div>
-  
+
         <div class="add-category">
           <div class="input-add-category">
             <button class="category-list">
               <img src="/assets/add-category-icon.svg" alt="">
               <span>Categorias</span>
             </button>
-            <button class="add-category-btn">+</button>
+            <button (click)="AddCategory()" class="add-category-btn">+</button>
           </div>
-        </div>  
+        </div> 
+
+          <!-- SELETOR DE CORES -->
+        <div class="color-category" *ngIf="isActive">
+          <div class="color-picker">
+            <div class="selected-color">
+              <div class="color-circle" [style.backgroundColor]="selectedColor"></div>
+            </div>
+            <div class="color-options">
+              <div *ngFor="let color of colors" class="color-option" (click)="selectColor(color)">
+                <div class="color-circle" [style.backgroundColor]="color"></div>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <input (keyup)="newCategory($event)" [(ngModel)]="inputCategory" class="input-add-category" type="text" placeholder="Nova Categoria">
+        </div>
+
         <div class="container-config">
           <span class="config">
             <img src="/assets/config-icon.svg" alt="">
@@ -33,7 +50,6 @@
           </span>
         </div>
       </section>
-  
       <section class="side-list">
         <div class="input-container">
           <label for="seach">

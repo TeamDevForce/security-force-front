@@ -120,6 +120,75 @@ main {
                 height: 100%;
             }
 
+
+                   /* SELETOR DE CORES */
+
+        .color-category {
+            padding-left: 2.25rem;
+            margin-top: 3px;
+            display: flex;
+            gap: 15px;
+          }
+    
+          .color-picker {
+            position: relative;
+            width: 28px;
+            user-select: none;
+            background: #4D4D4D;
+            border-radius: 5px 5px 0 0;
+          }
+    
+          .selected-color {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px;
+            border-radius: 5px;
+          }
+    
+          .selected-color .color-circle {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+          }
+    
+          .color-options {
+            display: block;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 28px;
+            border-radius: 0 0 5px 5px;
+            background: #4D4D4D;
+            z-index: 100;
+            padding: 5px 0;
+          }
+    
+          .color-option {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+          }
+    
+          .color-option .color-circle {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-bottom: 5px;
+    
+          }
+    
+          .input-add-category{
+            background-color: var(--bg-secondary-color);
+            border: none;
+            outline: none;
+    
+            font: var(--font-small);
+            color: var(--color-text);
+    
+          }
+
             .container-config {
                 margin-top: auto;
             }
@@ -194,4 +263,5 @@ main {
             }
         }
     }
+
 }
