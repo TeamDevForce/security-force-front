@@ -1,63 +1,108 @@
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Categoria } from '../../models/categoria.model';
+import { Credencial } from '../../models/credencial.model';
+import { Usuario } from '../../models/usuario.model';
+import { LayoutTabelaDadosComponent } from "../layout-tabela-dados/layout-tabela-dados.component";
+import { SelectCategoryComponent } from "../select-category/select-category.component";
 
 @Component({
-  selector: 'app-layout-principal',
+  selector: 'app-main-component',
   standalone: true,
-  imports: [FormsModule, CommonModule, DragDropModule],
+  imports: [FormsModule, CommonModule, DragDropModule, LayoutTabelaDadosComponent, SelectCategoryComponent],
   templateUrl: './layout-principal.component.html',
   styleUrl: './layout-principal.component.css'
 })
-export class LayoutPrincipalComponent {
+export class LayoutMainComponent {
+
+  constructor() { }
+
+
+  usuario: Usuario = {
+    nome: "Lucas",
+    email: "lucas@example.com",
+    credenciais: [
+      {
+        nome: "Google",
+        usuario: "lucasrodrigo507@gmail.com",
+        senha: "123123",
+        url: "www.google.com",
+        notas: "testando 123 notas",
+        category: { title: 'Redes', color: '#ff0000' },
+        dataCriacao: "25/10/2024"
+      },
+      {
+        nome: "GitHub",
+        usuario: "lucas_git",
+        senha: "senha_github",
+        url: "www.github.com",
+        notas: "conta pessoal",
+        category: { title: 'Dev', color: '#0000ff' },
+        dataCriacao: "24/10/2024"
+      },
+      {
+        nome: "GitHub",
+        usuario: "lucas_git",
+        senha: "senha_github",
+        url: "www.github.com",
+        notas: "conta pessoal",
+        category: { title: 'Dev', color: '#0000ff' },
+        dataCriacao: "24/10/2024"
+      },
+      {
+        nome: "GitHub",
+        usuario: "lucas_git",
+        senha: "senha_github",
+        url: "www.github.com",
+        notas: "conta pessoal",
+        category: { title: 'Dev', color: '#0000ff' },
+        dataCriacao: "24/10/2024"
+      },
+      {
+        nome: "GitHub",
+        usuario: "lucas_git",
+        senha: "senha_github",
+        url: "www.github.com",
+        notas: "conta pessoal",
+        category: { title: 'Dev', color: '#0000ff' },
+        dataCriacao: "24/10/2024"
+      },
+      {
+        nome: "GitHub",
+        usuario: "lucas_git",
+        senha: "senha_github",
+        url: "www.github.com",
+        notas: "conta pessoal",
+        category: { title: 'Dev', color: '#0000ff' },
+        dataCriacao: "24/10/2024"
+      }
+    ]
+  };
+
+  categories: Categoria[] = [];
+
   @ViewChild('categoriesList') categoriesList!: ElementRef;
 
-  colors: string[] = ['#9C5ECD', '#416FE3', '#5ECD70', '#E3A341', '#E34141', '#ffffff'];
 
-  categories = [
-    { title: 'Redes', color: '#ff0000' },
-  ];
+  colorSelectorActive: boolean = false;
 
-  inputCategory: string = '';
-  selectedColor: string = '#ffffff';
-  isActive: boolean = false;
-
-  selectColor(color: string) {
-    this.selectedColor = color;
+  closeSelectCategory(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === 'Escape') {
+      this.colorSelectorActive = false;
+    }
+    this.scrollToLastCategory();
   }
 
   AddCategory() {
-    this.isActive = true;
+    this.colorSelectorActive = true;
   }
 
-
-  newCategory(event: KeyboardEvent) {
-    let shouldReset = false;
-
-    if (event.key === 'Enter') {
-      const newCategoryObject = {
-        title: this.inputCategory,
-        color: this.selectedColor
-      }
-      this.categories.push(newCategoryObject);
-      this.scrollToLastCategory();
-      shouldReset = true;
-    } else if (event.key === 'Escape') {
-      this.isActive = false;
-      shouldReset = true;
-    }
-
-    if (shouldReset) {
-      this.isActive = false;
-      this.inputCategory = '';
-      this.selectedColor = '#ffffff';
-    }
-
+  categoryReceived(categoria: Categoria) {
+    console.log(categoria)
+    this.categories.push(categoria)
   }
-
-  hasScrolled = false;
-  isAtBottom = false;
 
   scrollToLastCategory() {
     if (this.categoriesList && this.categoriesList.nativeElement) {
@@ -78,5 +123,32 @@ export class LayoutPrincipalComponent {
     moveItemInArray(this.categories, event.previousIndex, event.currentIndex);
   }
 
+
+  currentCredencial: Credencial | null = null;
+
+  tableActive: boolean = false;
+
+  itemSelected(item: Credencial) {
+    this.currentCredencial = item
+    this.tableActive = true
+
+  }
+
+  deselectCredencial() {
+    this.currentCredencial = null;
+    this.tableActive = false;
+  }
+
+  @HostListener('document:keydown.escape', ['$event'])
+  closeOnEsc(event: KeyboardEvent) {
+    this.deselectCredencial();
+  }
+
+  @HostListener('document:click', ['$event.target'])
+  closeOnClickOutside(targetElement: HTMLElement) {
+    if (targetElement.classList.contains('side-options') || targetElement.classList.contains('side-list')) {
+      this.deselectCredencial();
+    }
+  }
 
 }

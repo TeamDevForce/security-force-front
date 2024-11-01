@@ -1,0 +1,15 @@
+<div class="color-category">
+    <div class="color-picker">
+        <div class="selected-color">
+            <div class="color-circle" [style.backgroundColor]="selectedColor"></div>
+        </div>
+        <div class="color-options">
+            <div *ngFor="let color of colors" class="color-option" (click)="selectColor(color)">
+                <div class="color-circle" [style.backgroundColor]="color"></div>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <input [(ngModel)]="inputCategory" (keyup)="createCategory($event)" class="input-add-category" autofocus type="text"
+        placeholder="Nova Categoria">
+</div>

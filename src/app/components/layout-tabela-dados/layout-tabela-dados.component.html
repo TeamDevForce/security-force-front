@@ -1,0 +1,128 @@
+<div #table class="container">
+
+
+    <div class="manager-table">
+
+        <header>
+            <div class="table-header">
+                <div>
+                    <img src="/assets/svg/icons/icon-tabela.svg" alt="">
+                </div>
+
+                <div>
+                    <h1>{{credencial?.nome}}</h1>
+                    <span [ngStyle]="{ 'background-color': credencial?.category?.color }"
+                        class="categoria-content">{{credencial?.category?.title}}</span>
+                </div>
+            </div>
+
+            <div>
+                <button (click)="enableOptions()">
+                    <img src="/assets/svg/icons/icon-options.svg" alt="">
+                </button>
+            </div>
+
+            <div #meuNovo *ngIf="optionActive" class="options-header">
+                <div class="title">
+                    <p>{{ credencial?.nome }}</p>
+                    <div>
+                        <button (click)="closeOptions()">
+                            <img src="/assets/svg/icons/close-icon.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+                <div class="space">
+                </div>
+
+                <div class="options-content">
+                    <div class="options">
+                        <button>
+                            <img src="/assets/svg/icons/favorito-card-icon.svg" alt="">
+                            Favoritar
+                        </button>
+                    </div>
+
+                    <div class="options">
+                        <button>
+                            <img src="/assets/svg/icons/edit-icon.svg" alt="">
+                            Editar
+                        </button>
+                    </div>
+
+                    <div class="options">
+                        <button>
+                            <img src="/assets/svg/icons/delete-icon.svg" alt="">
+                            Excluir
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </header>
+
+
+        <main>
+            <div class="section-main">
+                <div class="content-section url-section">
+                    <div>
+                        <p>URL</p>
+                        <a target="_blank" [href]="'http://' + credencial?.url">
+                            {{credencial?.url}}
+                        </a>
+                    </div>
+                    <div class="input-wrapper">
+                        <a target="_blank" [href]="'http://' + credencial?.url">
+                            <button>
+                                <img src="/assets/svg/icons/arrow-link.svg" alt="">
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="input-section">
+                        <p>Email</p>
+                    </div>
+                    <div class="input-wrapper">
+                        <input disabled [value]="credencial?.usuario" type="email">
+                        <button class="button-icon" (click)="copyToClipboard(credencial?.usuario,'email')">
+                            <img [src]="emailCopied ? '/assets/svg/icons/check.svg' : '/assets/svg/icons/copy.svg'"
+                                alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="input-section">
+                        <p>Senha</p>
+                    </div>
+                    <div class="input-wrapper">
+                        <input #inputPassword disabled class="output-password" value="{{ credencial?.senha }}"
+                            type="password">
+                        <button class="button-icon" (click)="copyToClipboard(credencial?.senha, 'password')">
+                            <img [src]="passwordCopied ? '/assets/svg/icons/check.svg' : '/assets/svg/icons/copy.svg'"
+                                alt="">
+                        </button>
+                        <button class="button-icon password-icon" (mouseup)="hidePassword(inputPassword)"
+                            (mousedown)="showPassword(inputPassword)">
+                            <img src="/assets/svg/icons/password-icon.svg" alt="">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <p>Notas</p>
+                    <p>{{credencial?.notas}}</p>
+                </div>
+
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <p>Adicionado em <span>{{credencial?.dataCriacao}}</span></p>
+        </footer>
+
+    </div>
+
+</div>

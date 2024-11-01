@@ -17,6 +17,8 @@
 
 body {
     background-color: #1a1a1a;
+    font: var(--font-small);
+    color: #ffffff;
 }
 
 .template-preview {
